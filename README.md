@@ -1,5 +1,4 @@
 # Yogabot
 
-![Yogabot](yogabot1.png "Yogabot Image")
-
+<img src="yogabot1.png" alt="Yogabot Image" width="250" height="250">
 
