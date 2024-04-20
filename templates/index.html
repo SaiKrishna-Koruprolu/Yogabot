@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yogabot - Your Personal Yoga Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Yogabot - Your Personal Yoga Assistant !</h1>
+        </header>
+        <div class="chat-container">
+            <div id="chat-log"></div>
+            <form id="chat-form">
+                <input type="text" id="message" placeholder="Ask me something about yoga...">
+                <button type="submit">Send</button>
+            </form>
+            <div class="suggestions">
+                <button class="suggestion-button" onclick="askQuestion('What are the benefits of practicing yoga?')">What are the benefits of practicing yoga?</button>
+                <button class="suggestion-button" onclick="askQuestion('What is the best time of day to practice yoga?')">What is the best time of day to practice yoga?</button>
+                <button class="suggestion-button" onclick="askQuestion('What equipment do I need for yoga?')">What equipment do I need for yoga?</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('chat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const message = document.getElementById('message').value;
+            const chatLog = document.getElementById('chat-log');
+            const formattedMessage = `<div class="message-user">${message}</div>`;
+            chatLog.innerHTML += formattedMessage;
+
+            fetch('/send_message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const formattedResponse = `<div class="message-bot">${data.response}</div>`;
+                chatLog.innerHTML += formattedResponse;
+            });
+
+            document.getElementById('message').value = ''; // Clear the input field after sending
+        });
+
+        function askQuestion(question) {
+            document.getElementById('message').value = question;
+            document.getElementById('chat-form').dispatchEvent(new Event('submit'));
+        }
+    </script>
+</body>
+</html>

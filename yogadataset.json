@@ -1,0 +1,79 @@
+[
+    {
+        "category": "question",
+        "text": "What are the benefits of practicing yoga?"
+    },
+    {
+        "category": "question",
+        "text": "What are some common yoga poses for beginners?"
+    },
+    {
+        "category": "question",
+        "text": "How can yoga help with stress relief?"
+    },
+    {
+        "category": "question",
+        "text": "What is the best time of day to practice yoga?"
+    },
+    {
+        "category": "answer",
+        "text": "Yoga offers numerous benefits such as improved flexibility, stress reduction, increased strength, and better posture."
+    },
+    {
+        "category": "answer",
+        "text": "Common yoga poses for beginners include Mountain Pose, Downward-Facing Dog, and Child's Pose."
+    },
+    {
+        "category": "answer",
+        "text": "Yoga helps with stress relief by promoting relaxation, mindfulness, and deep breathing techniques."
+    },
+    {
+        "category": "answer",
+        "text": "The best time to practice yoga depends on individual preferences and schedules, but morning or evening sessions are popular choices."
+    },
+    {
+        "category": "description",
+        "text": "Yoga is a holistic practice that combines physical postures, breath control, and meditation to promote overall well-being."
+    },
+    {
+        "category": "description",
+        "text": "Regular yoga practice can lead to improved flexibility, balance, and mental clarity."
+    },
+    {
+        "category": "benefit",
+        "text": "Improved flexibility helps prevent injuries and promotes better range of motion in daily activities."
+    },
+    {
+        "category": "benefit",
+        "text": "Stress reduction through yoga can lower cortisol levels and improve overall mental health."
+    },
+    {
+        "category": "pose",
+        "text": "Mountain Pose (Tadasana): Stand tall with feet together, arms at sides, and focus on steady breathing."
+    },
+    {
+        "category": "pose",
+        "text": "Downward-Facing Dog (Adho Mukha Svanasana): Start on hands and knees, lift hips upward, and stretch heels toward the floor."
+    },
+    {
+        "category": "meditation",
+        "text": "Mindful breathing meditation involves focusing on the breath to cultivate awareness and calm the mind."
+    },
+    {
+        "category": "meditation",
+        "text": "Loving-kindness meditation (Metta Bhavana) focuses on sending positive intentions and compassion to oneself and others."
+    }
+]
+
+
+# Tokenize the JSON data
+tokenized_data = []
+for item in json_data:
+    category = item["category"]
+    text = item["text"]
+    tokenized_text = tokenizer.tokenize(text)
+    tokenized_data.append({"category": category, "tokenized_text": tokenized_text})
+
+# Print tokenized data
+for item in tokenized_data:
+    print(item)
